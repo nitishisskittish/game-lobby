@@ -1,23 +1,49 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // for Keyboard and Mouse input
+using System.Collections;
 
-public class CameraMovement : MonoBehaviour
+public class player_hallway_movement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public Transform player;
+    public Transform startPoint;
+    public Transform endPoint;
 
-    void Update()
+    public float startSpeed = 20f;
+    public float endSpeed = 0.5f;
+    public float moveDuration = 5f;
+    public Camera vrCamera;
+    public float startFOV = 130f;
+    public float endFOV = 90f;
+    void Start()
     {
-        if (Keyboard.current == null || Mouse.current == null) return;
+        begin_movement();
+    }
+    public void begin_movement()
+    {
+        StartCoroutine(pre_hologram_movement());
+    }
 
-        //WASD
-        float x = 0f;
-        float z = 0f;
-        if (Keyboard.current.aKey.isPressed) x = -1f;
-        if (Keyboard.current.dKey.isPressed) x =  1f;
-        if (Keyboard.current.wKey.isPressed) z =  1f;
-        if (Keyboard.current.sKey.isPressed) z = -1f;
+    IEnumerator pre_hologram_movement()
+    {
+        float t = 0f;
 
-        Vector3 move = (transform.right * x + transform.forward * z).normalized;
-        transform.position += move * moveSpeed * Time.deltaTime;
+        Vector3 p1 = startPoint.position;
+        Vector3 p2 = endPoint.position;
+
+        while (t < moveDuration)
+        {
+            t += Time.deltaTime;
+
+            float normalized = t / moveDuration;
+
+            float speedCurve = Mathf.Lerp(startSpeed, endSpeed, normalized);
+
+            float smoothNormalized = Mathf.Sin(normalized * Mathf.PI * 0.5f);
+
+            player.position = Vector3.Lerp(p1, p2, smoothNormalized);
+            
+            vrCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, smoothNormalized);
+
+            yield return null;
+        }
     }
 }
