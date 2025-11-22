@@ -7,13 +7,13 @@ public class player_hallway_movement : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
 
-    public float startSpeed = 20f;
-    public float endSpeed = 0.5f;
-    public float moveDuration = 5f;
+    public float startSpeed = 100f;
+    public float endSpeed = 1f;
+    public float moveDuration = 3f;
     public Camera vrCamera;
-    public float startFOV = 130f;
+    public float startFOV = 168.9f;
     public float endFOV = 90f;
-    void Start()
+    void Awake()
     {
         begin_movement();
     }
@@ -37,7 +37,7 @@ public class player_hallway_movement : MonoBehaviour
 
             float speedCurve = Mathf.Lerp(startSpeed, endSpeed, normalized);
 
-            float smoothNormalized = Mathf.Sin(normalized * Mathf.PI * 0.5f);
+            float smoothNormalized = 1f - Mathf.Pow(1f - normalized, 3f);
 
             player.position = Vector3.Lerp(p1, p2, smoothNormalized);
             
