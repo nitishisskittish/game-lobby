@@ -13,37 +13,42 @@ public class player_hallway_movement : MonoBehaviour
     public Camera vrCamera;
     public float startFOV = 168.9f;
     public float endFOV = 90f;
+
+    public Renderer black_screen;
+    public float fadeDuration = 0.5f;
+
     void Awake()
     {
-        begin_movement();
-    }
-    public void begin_movement()
-    {
-        StartCoroutine(pre_hologram_movement());
+        player.position = startPoint.position;
+        vrCamera.fieldOfView = startFOV;
     }
 
-    IEnumerator pre_hologram_movement()
+    void Start()
     {
-        float t = 0f;
+        StartCoroutine(Fade_in_and_move());
+    }
 
-        Vector3 p1 = startPoint.position;
-        Vector3 p2 = endPoint.position;
+    IEnumerator Fade_in_and_move()
+    {
+        yield return null;
 
-        while (t < moveDuration)
+        float tMove = 0f;
+
+        while (tMove < moveDuration)
         {
-            t += Time.deltaTime;
+            tMove += Time.deltaTime;
+            float moveNormalized = Mathf.Clamp01(tMove / moveDuration);
+            float smoothMove = 1f - Mathf.Pow(1f - moveNormalized, 3f);
 
-            float normalized = t / moveDuration;
-
-            float speedCurve = Mathf.Lerp(startSpeed, endSpeed, normalized);
-
-            float smoothNormalized = 1f - Mathf.Pow(1f - normalized, 3f);
-
-            player.position = Vector3.Lerp(p1, p2, smoothNormalized);
-            
-            vrCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, smoothNormalized);
-
+            player.position = Vector3.Lerp(startPoint.position, endPoint.position, smoothMove);
+            vrCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, smoothMove);
+            float fadeNormalized = tMove / fadeDuration;
+            Color c = black_screen.material.color;
+            c.a = 1f - fadeNormalized;
+            black_screen.material.color = c;
             yield return null;
         }
+        player.position = endPoint.position;
+        vrCamera.fieldOfView = endFOV;
     }
 }
