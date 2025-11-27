@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class player_hallway_movement : MonoBehaviour
+public class pre_holo_player_movement : MonoBehaviour
 {
     public Transform player;
     public Transform startPoint;
@@ -16,6 +16,8 @@ public class player_hallway_movement : MonoBehaviour
 
     public Renderer black_screen;
     public float fadeDuration = 0.5f;
+
+    public pre_click_holo_movement pre_click_holo_movement_script;
 
     void Awake()
     {
@@ -34,12 +36,17 @@ public class player_hallway_movement : MonoBehaviour
 
         float tMove = 0f;
 
+        bool hasStartedHolo = false;
+
         while (tMove < moveDuration)
         {
             tMove += Time.deltaTime;
             float moveNormalized = Mathf.Clamp01(tMove / moveDuration);
             float smoothMove = 1f - Mathf.Pow(1f - moveNormalized, 3f);
-
+                if (moveNormalized >= 0.25f && !hasStartedHolo){
+                StartCoroutine(pre_click_holo_movement_script.move_up());
+                hasStartedHolo = true;
+            }
             player.position = Vector3.Lerp(startPoint.position, endPoint.position, smoothMove);
             vrCamera.fieldOfView = Mathf.Lerp(startFOV, endFOV, smoothMove);
             float fadeNormalized = tMove / fadeDuration;
