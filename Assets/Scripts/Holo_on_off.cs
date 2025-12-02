@@ -1,36 +1,37 @@
 using UnityEngine;
+using System.Collections;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Holo_on_off : MonoBehaviour
 {
-    public float minDistance = 10;
-
     public bool Active = false;
     protected Animator[] children;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         children = GetComponentsInChildren<Animator>();
-        for (int i = 0; i < children.Length; i++){
-                children[i].SetBool("Active", Active);
-            }
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].SetBool("Active", Active);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+
+    public void On()
     {
-        Vector3 delta = Camera.main.transform.position - transform.position;
-        if (delta.magnitude < minDistance){
-            if (Active) return;
-            Active = true;
-            for (int i = 0; i < children.Length; i++){
-                children[i].SetBool("Active", true);
-            }
-        } else {
-            if (!Active) return;
-            Active = false;
-            for (int i = 0; i < children.Length; i++){
-                children[i].SetBool("Active", false);
-            }
+        Active = true;
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].SetBool("Active", true);
         }
-    }}
+    }
+
+    public void Off()
+    {
+        Active = false;
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].SetBool("Active", false);
+        }
+    }
+}

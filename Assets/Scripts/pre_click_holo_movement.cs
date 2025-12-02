@@ -11,6 +11,9 @@ public class pre_click_holo_movement : MonoBehaviour
     public float endSpeed = 0.5f;
     public float moveDuration = 5f;
 
+    public Holo_on_off holo_on_off_script;
+
+
     void Awake()
     {
         hologram.position = startPoint.position;
@@ -18,6 +21,8 @@ public class pre_click_holo_movement : MonoBehaviour
     public IEnumerator move_up()
     {
         yield return null;
+        
+        holo_on_off_script.On();
 
         float tMove = 0f;
 

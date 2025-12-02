@@ -43,7 +43,8 @@ public class pre_holo_player_movement : MonoBehaviour
             tMove += Time.deltaTime;
             float moveNormalized = Mathf.Clamp01(tMove / moveDuration);
             float smoothMove = 1f - Mathf.Pow(1f - moveNormalized, 3f);
-                if (moveNormalized >= 0.25f && !hasStartedHolo){
+            if (moveNormalized >= 0.25f && !hasStartedHolo)
+            {
                 StartCoroutine(pre_click_holo_movement_script.move_up());
                 hasStartedHolo = true;
             }
