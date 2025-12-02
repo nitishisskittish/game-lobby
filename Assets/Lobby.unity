@@ -938,6 +938,7 @@ MonoBehaviour:
   startSpeed: 100
   endSpeed: 1
   moveDuration: 1.5
+  holo_on_off_script: {fileID: 1921818494}
 --- !u!4 &1046907139
 Transform:
   m_ObjectHideFlags: 0
@@ -1379,7 +1380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753072610f7cf992e992ff0ccfcf4c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  minDistance: 10
   Active: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
