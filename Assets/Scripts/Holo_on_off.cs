@@ -15,8 +15,6 @@ public class Holo_on_off : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-
     public void On()
     {
         Active = true;
