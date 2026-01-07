@@ -37,7 +37,7 @@ public class hologram_movement : MonoBehaviour
         hologram.position = endPoint.position;
     }
 
-    public IEnumerator move_down(System.Action<bool> callback)
+    public IEnumerator move_down()
     {
         holo_on_off_script.Off();
 
@@ -47,13 +47,11 @@ public class hologram_movement : MonoBehaviour
         {
             tMove += Time.deltaTime;
             float moveNormalized = Mathf.Clamp01(tMove / moveDuration);
-            float smoothMove = 1f - Mathf.Pow(1f - moveNormalized, 3f);
+            float smoothMove = Mathf.Pow(moveNormalized, 3f);
             hologram.position = Vector3.Lerp(endPoint.position, startPoint.position, smoothMove);
             yield return null;
         }
         hologram.position = startPoint.position;
-        callback?.Invoke(true);
-        yield return null;
     }
 
 }

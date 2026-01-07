@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 150855899}
   serializedVersion: 2
   m_LocalRotation: {x: -2.3283064e-10, y: -0, z: 9.094947e-13, w: 1}
-  m_LocalPosition: {x: 0.432, y: 1.25, z: -19.42}
+  m_LocalPosition: {x: 0.73, y: 1.25, z: 35.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,7 +536,7 @@ Transform:
   m_GameObject: {fileID: 191997384}
   serializedVersion: 2
   m_LocalRotation: {x: -2.3283064e-10, y: -0, z: 9.094947e-13, w: 1}
-  m_LocalPosition: {x: 0.48, y: -6.92, z: -19.98}
+  m_LocalPosition: {x: 0.778, y: -4.3, z: 35.250004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -644,7 +644,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273952664}
   m_LocalRotation: {x: 0.0023999612, y: 0.002400078, z: -0.000005761301, w: 0.9999942}
-  m_LocalPosition: {x: 0, y: 0, z: -19.42}
+  m_LocalPosition: {x: 0, y: 0, z: 35.810005}
   m_LocalScale: {x: 0.008000002, y: 0.0055, z: 4.641301}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -655,7 +655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.272, y: -171.315, z: -0.04}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.432, y: 1.46}
+  m_AnchoredPosition: {x: 0.73, y: 1.46}
   m_SizeDelta: {x: 640, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &273952666
@@ -873,7 +873,7 @@ Transform:
   m_GameObject: {fileID: 367197997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 0.33, z: 43.27}
+  m_LocalPosition: {x: 1.14, y: 0.33, z: 88.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1722,8 +1722,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0, y: -337}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -337}
+  m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049721961
 MonoBehaviour:
@@ -1889,13 +1889,14 @@ MonoBehaviour:
   endPoint: {fileID: 367197998}
   start_speed: 100
   end_speed: 1
-  back_up_speed: 1
-  moveDuration: 3
+  waiting_speed: 0.8
+  first_move_duration: 3
+  final_move_duration: 3
   vrCamera: {fileID: 804826073}
   startFOV: 168.9
   endFOV: 90
   black_screen: {fileID: 1077290246}
-  fadeDuration: 0.5
+  fadeDuration: 2.5
   holo_movement_script: {fileID: 22128015}
 --- !u!1 &1077290243
 GameObject:
@@ -2468,7 +2469,7 @@ GameObject:
   - component: {fileID: 1489679453}
   - component: {fileID: 1489679452}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,13 +2487,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1816522055}
   - {fileID: 1832383025}
   m_Father: {fileID: 187545288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -0, y: -337}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489679452
 MonoBehaviour:
@@ -2537,7 +2539,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1489679453}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1816522056}
+        m_TargetAssemblyTypeName: button_1, Assembly-CSharp
+        m_MethodName: play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1489679453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2929,7 +2943,7 @@ Transform:
   m_GameObject: {fileID: 1696829990}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 0.33, z: -22.580002}
+  m_LocalPosition: {x: 0.73, y: 0.33, z: 32.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2949,7 +2963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 464552, guid: 64b3f36e835346747865afbf6cf62acf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 46.413002
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 464552, guid: 64b3f36e835346747865afbf6cf62acf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3120,6 +3134,55 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1816522054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816522055}
+  - component: {fileID: 1816522056}
+  m_Layer: 0
+  m_Name: Button_1_Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1816522055
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816522054}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9849205, y: 0.9849206, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1489679451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 535.5258, y: 272.75394}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1816522056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816522054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df04efbc13b93f9295b652e909090e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::button_1
+  player_movement_script: {fileID: 1071358108}
 --- !u!1 &1832383024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,7 +3583,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -0, y: -337}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946080004
 MonoBehaviour:
